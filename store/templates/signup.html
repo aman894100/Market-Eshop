@@ -1,0 +1,62 @@
+{% extends 'basic.html' %}
+{% block css %}
+img{
+    margin-left: 50px;
+    height: 300px;
+    widht: 400x;
+}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="icon">
+        
+    </div>
+    <div class="p-4 m-4">
+        <div class="col-lg-5 mx-auto border rounded pt-3">
+            <img src="/upload/images/market.jpg" alt="">
+            <form action="/signup" method="post">
+                {% csrf_token %}
+                <h3 class="alert alert-secondary border rounded m-4" style="text-align:center">Create an Account</h3>
+
+                {% if errors %}
+                <h3 class="alert alert-danger border rounded m-4" style="text-align:center">{{ errors }}</h3>
+                {% endif %}
+                {% if valids %}
+                <h3 class="alert alert-success norder rounded m-4" style="text-align:center">{{ valids }}</h3>
+                {% endif %}
+                <div class="form-group m-4">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" value="{{ values.email }}" id="" class="form-control" placeholder="exaple@gmail.com" required>
+                </div>
+                <div class="form-group m-4">
+                    <label for="firstname">First Name</label>
+                    <input type="text" name="firstname" value="{{values.first_name}}" id="" class="form-control" placeholder="Enter your first name here">
+                </div>
+                <div class="form-group m-4">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastname" value="{{values.last_name}}" id="" class="form-control" placeholder="Enter your last name here">
+                </div>
+                <div class="form-group m-4">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="" class="form-control" placeholder="********">
+                </div>
+                <div class="form-group m-4">
+                    <label for="phone">Mobile number</label>
+                    <input type="tel" name="phone" value="{{values.phone}}" id="" class="form-control" placeholder="Enter you mobile number here">
+                </div>
+                <div class="form-group m-4">
+                    <input class="btn btn-info" type="submit" value="Create an account">
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="shopping">
+    
+</div>
+{% endblock body %}
