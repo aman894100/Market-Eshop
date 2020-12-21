@@ -1,10 +1,10 @@
 {% extends 'basic.html' %}
 {% block css %}
-img{
-    margin-left: 50px;
+<!-- img{
+    margin-left:30px;
     height: 300px;
-    widht: 400x;
-}
+    widht: 300x;
+} -->
 {% endblock %}
 
 {% block body %}
@@ -14,8 +14,8 @@ img{
         
     </div>
     <div class="p-4 m-4">
-        <div class="col-lg-5 mx-auto border rounded pt-3">
-            <img src="/upload/images/market.jpg" alt="">
+        <div class="col-lg-7 mx-auto border rounded pt-3">
+            <img src="/media/market.jpg" class="mx-auto d-block img-fluid">
             <form action="/signup" method="post">
                 {% csrf_token %}
                 <h3 class="alert alert-secondary border rounded m-4" style="text-align:center">Create an Account</h3>

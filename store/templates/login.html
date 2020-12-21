@@ -1,19 +1,18 @@
 {% extends 'basic.html' %}
 
 {% block css %}
-img{
-    margin-left: 50px;
-    height: 300px;
-    widht: 400x;
-}
+<!-- img{
+    height: 200px;
+    widht: 200px;
+} -->
 {% endblock %}
 
 {% block body %}
 
 <div class="container">
     <div class="p-4 m-4">
-        <div class="col-lg-5 mx-auto border rounded pt-3 mt-5">
-            <img src="/upload/images/market.jpg" alt="">
+        <div class="col-lg-6 mx-auto border rounded pt-3 mt-5">
+            <img src="/media/cart.jpg" class="mx-auto d-block img-fluid">
 
             <form action="/login" method="post">
                 {% csrf_token %}
