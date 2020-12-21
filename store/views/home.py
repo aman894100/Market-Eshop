@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from store.models.product import Product
 from store.models.category import Category
 from django.views import View
@@ -38,26 +38,31 @@ class Index(View):
         print('cart:' , request.session['cart'])
         return redirect('homepage')
 
-
     def get(self, request):
-        # whenever homepage reloads in index.html it will look for cart first. so we have to create cart first if it is
-        # not there and if cart is already present then just get it from session
-        cart = request.session.get('cart', 'CART NOT FOUND')
-        if not cart:
-            request.session['cart'] = {}
+        # import pdb;
+        # pdb.set_trace()
+        print(request.get_full_path()[1:])
+        return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
 
-        categories = Category.get_all_categories()
-        # print(request.GET)
-        category_id = request.GET.get('category')
-        if category_id:
-            products = Product.get_all_products_by_categoryid(category_id)
-        else:
-            products = Product.get_all_products()
-        data = {}
-        data['products'] = products
-        data['categories'] = categories
-        print('you are: ', request.session.get('email'))
-        return render(request, 'index.html', data)
+def store(request):
+    cart = request.session.get('cart')
+    if not cart:
+        request.session['cart'] = {}
+    products = None
+    categories = Category.get_all_categories()
+    categoryID = request.GET.get('category')
+    if categoryID:
+        products = Product.get_all_products_by_categoryid(categoryID)
+    else:
+        products = Product.get_all_products();
+
+    data = {}
+    data['products'] = products
+    data['categories'] = categories
+
+    print('you are : ', request.session.get('email'))
+    return render(request, 'index.html', data)
+
 
 
 

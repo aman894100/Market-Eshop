@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.urls import path
-from store.views.home import Index
+from store.views.home import Index, store
 from store.views.login import Login
 from store.views.signup import Signup
 from store.views.logout import logout
@@ -14,6 +14,7 @@ from store.middlewares.auth import auth_middleware
 
 urlpatterns = [
     path('', Index.as_view(), name='homepage'),
+    path('store', store, name='store'),
     path('login', Login.as_view(), name='login'),
     path('signup', Signup.as_view(), name='signup'),
     path('logout', logout, name='logout'),
